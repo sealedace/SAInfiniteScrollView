@@ -23,9 +23,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="220" id="Zcg-uN-J2F"/>
                                 </constraints>
-                                <connections>
-                                    <outlet property="delegate" destination="9pv-A4-QxB" id="Jk8-TL-BER"/>
-                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

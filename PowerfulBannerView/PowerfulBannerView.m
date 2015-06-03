@@ -202,10 +202,7 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
 
 - (void)scrollViewIndexChangedFromIndex:(NSInteger)fromIndex _:(NSInteger)toIndex
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(bannerView:didScrollFrom:toIndex:)]) {
-        
-        [self.delegate bannerView:self didScrollFrom:fromIndex toIndex:toIndex];
-    }
+    !self.bannerIndexChangeBlock ?: self.bannerIndexChangeBlock(self, fromIndex, toIndex);
     
     [self autoSlide];
 }

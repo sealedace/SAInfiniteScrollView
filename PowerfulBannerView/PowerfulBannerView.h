@@ -7,8 +7,6 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol PowerfulBannerViewDelegate;
-
 @class PowerfulBannerView;
 
 /**
@@ -24,6 +22,7 @@
  */
 typedef UIView *(^PowerfulBannerViewItemConfigration)(PowerfulBannerView *banner, id item, UIView *reusableView);
 typedef void(^PowerfulBannerViewDidSelectAtIndex)(PowerfulBannerView *banner, NSInteger index);
+typedef void(^PowerfulBannerViewDidUpdateIndex)(PowerfulBannerView *banner, NSInteger fromIndex, NSInteger toIndex);
 
 @interface PowerfulBannerView : UIView
 // banner内容的model数组
@@ -36,19 +35,12 @@ typedef void(^PowerfulBannerViewDidSelectAtIndex)(PowerfulBannerView *banner, NS
 @property (copy, nonatomic) PowerfulBannerViewItemConfigration bannerItemConfigurationBlock;
 // banner点击事件回调
 @property (copy, nonatomic) PowerfulBannerViewDidSelectAtIndex bannerDidSelectBlock;
-// banner事件代理
-@property (weak, nonatomic) IBOutlet id <PowerfulBannerViewDelegate> delegate;
+// banner滑动index变动的回调
+@property (copy, nonatomic) PowerfulBannerViewDidUpdateIndex bannerIndexChangeBlock;
 
 // 开启/关闭循环模式 注：infiniteLooping设为NO 会自动把 autoLooping 设为NO
 @property (nonatomic) BOOL infiniteLooping;
 // 开启/关闭自动循环滚动  注：autoLooping设为YES 会自动把 infiniteLooping 设为YES
 @property (nonatomic) BOOL autoLooping;
-
-@end
-
-
-@protocol PowerfulBannerViewDelegate <NSObject>
-@optional
-- (void)bannerView:(PowerfulBannerView *)banner didScrollFrom:(NSInteger)index toIndex:(NSInteger)toIndex;
 
 @end

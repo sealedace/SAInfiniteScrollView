@@ -10,7 +10,6 @@
 #import "PowerfulBannerView.h"
 
 @interface SecondViewController ()
-<PowerfulBannerViewDelegate>
 @property (strong, nonatomic) PowerfulBannerView *bannerView;
 
 @end
@@ -45,6 +44,10 @@
     
     self.bannerView.bannerDidSelectBlock = ^(PowerfulBannerView *banner, NSInteger index) {
         printf("banner did select index at: %zd \n", index);
+    };
+    
+    self.bannerView.bannerIndexChangeBlock = ^(PowerfulBannerView *banner, NSInteger fromIndex, NSInteger toIndex) {
+        printf("banner changed index from %zd to %zd\n", fromIndex, toIndex);
     };
     
     self.bannerView.items = @[ @"1.jpg", @"2.jpg", @"ss-detail1.jpg", @"4.png", @"5.jpg", @"6.jpg" ];

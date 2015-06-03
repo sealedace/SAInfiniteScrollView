@@ -10,7 +10,6 @@
 #import "PowerfulBannerView.h"
 
 @interface FirstViewController ()
-<PowerfulBannerViewDelegate>
 @property (weak, nonatomic) IBOutlet PowerfulBannerView *bannerView;
 
 @end
@@ -42,14 +41,13 @@
         printf("banner did select index at: %zd \n", index);
     };
     
+    self.bannerView.bannerIndexChangeBlock = ^(PowerfulBannerView *banner, NSInteger fromIndex, NSInteger toIndex) {
+        printf("banner changed index from %zd to %zd\n", fromIndex, toIndex);
+    };
+    
     self.bannerView.items = @[ @"1.jpg", @"2.jpg", @"ss-detail1.jpg", @"4.png", @"5.jpg", @"6.jpg" ];
     self.bannerView.loopingInterval = 2.f;
     self.bannerView.autoLooping = YES;
-}
-
-- (void)bannerView:(PowerfulBannerView *)banner didScrollFrom:(NSInteger)index toIndex:(NSInteger)toIndex
-{
-    printf("scrollview changed index from %zd to %zd\n", index, toIndex);
 }
 
 @end
