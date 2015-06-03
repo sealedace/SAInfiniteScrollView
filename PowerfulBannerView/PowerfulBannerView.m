@@ -109,6 +109,7 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
 
 - (void)dealloc
 {
+    [self cancelSlide];
     _scrollView.delegate = nil;
 }
 
