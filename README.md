@@ -1,6 +1,8 @@
 
 #PowerfulBannerView
-代替UICollectionView，并支持循环滑动的bannerView
+UIScrollView实现的支持循环滑动的bannerView
+
+![0](1.gif)
 
 ###如何使用
 ####创建对象
