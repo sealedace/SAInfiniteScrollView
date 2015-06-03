@@ -15,14 +15,14 @@
 		503B43211B144CB30043DE6B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 503B43201B144CB30043DE6B /* Images.xcassets */; };
 		503B43241B144CB30043DE6B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 503B43221B144CB30043DE6B /* LaunchScreen.xib */; };
 		503B43301B144CB30043DE6B /* PowerfulBannerViewDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 503B432F1B144CB30043DE6B /* PowerfulBannerViewDemoTests.m */; };
-		503B433C1B144D280043DE6B /* PowerfulBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 503B433B1B144D280043DE6B /* PowerfulBannerView.m */; };
-		503B433F1B1466D40043DE6B /* InfiniteScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 503B433E1B1466D40043DE6B /* InfiniteScrollView.m */; };
 		5076E0F31B1D594A00DA0271 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 5076E0F21B1D594A00DA0271 /* 4.png */; };
 		5076E0F61B1D597B00DA0271 /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5076E0F41B1D597B00DA0271 /* 5.jpg */; };
 		5076E0F71B1D597B00DA0271 /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5076E0F51B1D597B00DA0271 /* 6.jpg */; };
 		50B505431B16BF4200949C03 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50B505421B16BF4200949C03 /* 1.jpg */; };
 		50B505451B16C0B200949C03 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50B505441B16C0B200949C03 /* 2.jpg */; };
 		50DBEC8D1B186F70000A5EA5 /* ss-detail1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50DBEC8C1B186F70000A5EA5 /* ss-detail1.jpg */; };
+		50E12CFB1B1EE7420042CF63 /* InfiniteScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E12CF81B1EE7420042CF63 /* InfiniteScrollView.m */; };
+		50E12CFC1B1EE7420042CF63 /* PowerfulBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E12CFA1B1EE7420042CF63 /* PowerfulBannerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,16 +51,16 @@
 		503B43291B144CB30043DE6B /* PowerfulBannerViewDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PowerfulBannerViewDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		503B432E1B144CB30043DE6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		503B432F1B144CB30043DE6B /* PowerfulBannerViewDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PowerfulBannerViewDemoTests.m; sourceTree = "<group>"; };
-		503B433A1B144D280043DE6B /* PowerfulBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PowerfulBannerView.h; sourceTree = "<group>"; };
-		503B433B1B144D280043DE6B /* PowerfulBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PowerfulBannerView.m; sourceTree = "<group>"; };
-		503B433D1B1466D40043DE6B /* InfiniteScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollView.h; sourceTree = "<group>"; };
-		503B433E1B1466D40043DE6B /* InfiniteScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollView.m; sourceTree = "<group>"; };
 		5076E0F21B1D594A00DA0271 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
 		5076E0F41B1D597B00DA0271 /* 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5.jpg; sourceTree = "<group>"; };
 		5076E0F51B1D597B00DA0271 /* 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6.jpg; sourceTree = "<group>"; };
 		50B505421B16BF4200949C03 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		50B505441B16C0B200949C03 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		50DBEC8C1B186F70000A5EA5 /* ss-detail1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ss-detail1.jpg"; sourceTree = "<group>"; };
+		50E12CF71B1EE7420042CF63 /* InfiniteScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollView.h; sourceTree = "<group>"; };
+		50E12CF81B1EE7420042CF63 /* InfiniteScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollView.m; sourceTree = "<group>"; };
+		50E12CF91B1EE7420042CF63 /* PowerfulBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PowerfulBannerView.h; sourceTree = "<group>"; };
+		50E12CFA1B1EE7420042CF63 /* PowerfulBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PowerfulBannerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +102,7 @@
 		503B430F1B144CB30043DE6B /* PowerfulBannerViewDemo */ = {
 			isa = PBXGroup;
 			children = (
-				503B43391B144D030043DE6B /* PowerfulBannerView */,
+				50E12CF61B1EE7420042CF63 /* PowerfulBannerView */,
 				503B43141B144CB30043DE6B /* AppDelegate.h */,
 				503B43151B144CB30043DE6B /* AppDelegate.m */,
 				503B43171B144CB30043DE6B /* FirstViewController.h */,
@@ -149,15 +149,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		503B43391B144D030043DE6B /* PowerfulBannerView */ = {
+		50E12CF61B1EE7420042CF63 /* PowerfulBannerView */ = {
 			isa = PBXGroup;
 			children = (
-				503B433D1B1466D40043DE6B /* InfiniteScrollView.h */,
-				503B433E1B1466D40043DE6B /* InfiniteScrollView.m */,
-				503B433A1B144D280043DE6B /* PowerfulBannerView.h */,
-				503B433B1B144D280043DE6B /* PowerfulBannerView.m */,
+				50E12CF71B1EE7420042CF63 /* InfiniteScrollView.h */,
+				50E12CF81B1EE7420042CF63 /* InfiniteScrollView.m */,
+				50E12CF91B1EE7420042CF63 /* PowerfulBannerView.h */,
+				50E12CFA1B1EE7420042CF63 /* PowerfulBannerView.m */,
 			);
-			path = PowerfulBannerView;
+			name = PowerfulBannerView;
+			path = ../../PowerfulBannerView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,10 +267,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50E12CFC1B1EE7420042CF63 /* PowerfulBannerView.m in Sources */,
 				503B431C1B144CB30043DE6B /* SecondViewController.m in Sources */,
-				503B433F1B1466D40043DE6B /* InfiniteScrollView.m in Sources */,
+				50E12CFB1B1EE7420042CF63 /* InfiniteScrollView.m in Sources */,
 				503B43161B144CB30043DE6B /* AppDelegate.m in Sources */,
-				503B433C1B144D280043DE6B /* PowerfulBannerView.m in Sources */,
 				503B43191B144CB30043DE6B /* FirstViewController.m in Sources */,
 				503B43131B144CB30043DE6B /* main.m in Sources */,
 			);
