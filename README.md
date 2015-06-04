@@ -4,6 +4,10 @@ UIScrollView实现的支持循环滑动的bannerView
 
 ![0](1.gif)
 
+###安装
+* Cocoapods
+* 拷贝目录PowerfulBannerView，添加至工程即可
+
 ###如何使用
 ####创建对象
 * nib加载
