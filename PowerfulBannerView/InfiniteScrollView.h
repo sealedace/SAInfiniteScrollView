@@ -51,6 +51,20 @@
  */
 - (void)touchesCancelled;
 
+/**
+ @brief  转移scrollView的触摸事件，保证手势不会发生穿透
+ 
+ @since 1.0.2
+ */
+- (void)transferScrollViewGesture;
+
+/**
+ @brief  InfiniteScrollView重新获取事件
+ 
+ @since 1.0.2
+ */
+- (void)restoreScrollViewGesture;
+
 @end
 
 typedef void(^IndexChanged)(NSInteger newIndex, NSInteger oldIndex);
@@ -79,5 +93,19 @@ typedef void(^IndexChanged)(NSInteger newIndex, NSInteger oldIndex);
  @since 1.0
  */
 - (void)slideToNext;
+
+/**
+ @brief  重置视图
+ 
+ @since 1.0.2
+ */
+- (void)resetViews;
+
+/**
+ @brief  重新加载内容
+ 
+ @since 1.0.2
+ */
+- (void)reloadViews;
 
 @end

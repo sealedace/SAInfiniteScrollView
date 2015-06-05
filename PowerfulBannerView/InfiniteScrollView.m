@@ -62,10 +62,21 @@ static NSInteger const dequeueLevel = 4;
     [self configure];
 }
 
+- (void)setContentSize:(CGSize)contentSize
+{
+    // 如果一样就不需要重新设置，避免内容发生不正确的偏移
+    if (CGSizeEqualToSize(self.contentSize, contentSize)) {
+        return;
+    }
+
+    [super setContentSize:contentSize];
+}
+
 - (void)configure
 {
     if (self.infiniteScrolling) {
-        self.contentSize = CGSizeMake(13*self.frame.size.width, self.frame.size.height);
+        CGSize contentSize = CGSizeMake(13*self.frame.size.width, self.frame.size.height);
+        self.contentSize = contentSize;
     } else {
         if (self.dataSource) {
             self.contentSize = CGSizeMake([self.dataSource viewCycleCount] * CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
@@ -106,7 +117,8 @@ static NSInteger const dequeueLevel = 4;
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
     
-    if ([self.layer animationKeys].count > 0) {
+    if ([self.layer animationKeys].count > 0
+        || [self.dataSource viewCycleCount] == 0) {
         return;
     }
 
@@ -114,6 +126,25 @@ static NSInteger const dequeueLevel = 4;
     currentOffset.x += CGRectGetWidth(self.bounds);
     
     [self setContentOffset:currentOffset animated:YES];
+}
+
+- (void)resetViews
+{
+    [self.visibleViews removeAllObjects];
+    [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    _currentIndex = 0;
+    self.frame = self.frame;
+}
+
+- (void)reloadViews
+{
+    for (UIView *view in self.visibleViews) {
+        if (view.subviews.count == 0) {
+            continue;
+        }
+
+        [self.dataSource itemViewForIndex:[self getIndexForContentView:view] reusableItemView:[view.subviews firstObject]];
+    }
 }
 
 #pragma mark - Layout
@@ -130,17 +161,31 @@ static NSInteger const dequeueLevel = 4;
     long decimalPart = (long)scale;
     float fractionalPart = scale - decimalPart;
     
-    if (distanceFromCenter > (contentWidth / 4.f)
-        && (fractionalPart < FLT_EPSILON || (1-fractionalPart) < FLT_EPSILON))
-    {
-        self.contentOffset = CGPointMake(centerOffsetX, currentOffset.y);
+    if (distanceFromCenter > (contentWidth / 4.f)) {
         
-        // move content by the same amount so it appears to stay still
-        for (UIView *view in self.visibleViews) {
-            CGPoint center = [self.containerView convertPoint:view.center toView:self];
-            center.x += (centerOffsetX - currentOffset.x);
-            view.center = [self convertPoint:center toView:self.containerView];
+        // 这里关闭事件来让scrollview获取一定时间恢复以重置offset
+        self.userInteractionEnabled = NO;
+        // 这里转移手势，目的是为了维持手势，否则手势可能会穿透到其他视图层
+        [self.dataSource transferScrollViewGesture];
+        
+        if ((fractionalPart < FLT_EPSILON || (1-fractionalPart) < FLT_EPSILON)) {
+            
+            self.contentOffset = CGPointMake(centerOffsetX, currentOffset.y);
+            
+            // move content by the same amount so it appears to stay still
+            for (UIView *view in self.visibleViews) {
+                CGPoint center = [self.containerView convertPoint:view.center toView:self];
+                center.x += (centerOffsetX - currentOffset.x);
+                view.center = [self convertPoint:center toView:self.containerView];
+            }
+            
+            // 重新开启事件
+            self.userInteractionEnabled = YES;
+            [self.dataSource restoreScrollViewGesture];
         }
+    } else {
+        self.userInteractionEnabled = YES;
+        [self.dataSource restoreScrollViewGesture];
     }
 }
 

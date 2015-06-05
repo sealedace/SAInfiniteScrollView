@@ -18,6 +18,9 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
 <InfiniteScrollViewDataSource, UIScrollViewDelegate>
 @property (strong, nonatomic) InfiniteScrollView *scrollView;
 @property (nonatomic) BannerTouchState touchState;
+
+@property (strong, nonatomic) UIPanGestureRecognizer *panGesture;
+
 @end
 
 @implementation PowerfulBannerView
@@ -45,9 +48,20 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
     return self.scrollView.currentIndex;
 }
 
+- (UIPanGestureRecognizer *)panGesture
+{
+    if (!_panGesture) {
+        _panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(doNothing)];
+    }
+
+    return _panGesture;
+}
+
 #pragma mark - Setters
 - (void)setItems:(NSArray *)items
 {
+    BOOL shouldReConfigure = (_items.count != items.count);
+    
     _items = items;
     
     if (items.count <= 1) {
@@ -56,7 +70,11 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
         self.scrollView.scrollEnabled = YES;
     }
     
-    self.scrollView.frame = self.scrollView.frame;
+    if (shouldReConfigure) {
+        [self.scrollView resetViews];
+    } else {
+        [self reloadData];
+    }
 }
 
 - (void)setInfiniteLooping:(BOOL)infiniteLooping
@@ -180,6 +198,21 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
     [NSObject cancelPreviousPerformRequestsWithTarget:self.scrollView selector:@selector(slideToNext) object:nil];
 }
 
+- (void)doNothing
+{
+    
+}
+
+- (void)transferScrollViewGesture
+{
+    [self addGestureRecognizer:self.panGesture];
+}
+
+- (void)restoreScrollViewGesture
+{
+    [self removeGestureRecognizer:self.panGesture];
+}
+
 #pragma mark - InfiniteScrollViewDataSource
 
 - (UIView *)itemViewForIndex:(NSInteger)index reusableItemView:(UIView *)view
@@ -227,7 +260,10 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
 
 - (void)touchesCancelled
 {
+    self.touchState = BannerTouchState_Ended;
     
+    // 尝试恢复自动滑动
+    [self autoSlide];
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -242,6 +278,12 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
     
     // 尝试恢复自动滑动
     [self autoSlide];
+}
+
+#pragma mark - Public
+- (void)reloadData
+{
+    [self.scrollView reloadViews];
 }
 
 @end

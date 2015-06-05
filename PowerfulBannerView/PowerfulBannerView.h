@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 
 @class PowerfulBannerView;
+@protocol PowerfulBannerPageControl;
 
 /**
  @brief  返回一个需要展示的内容视图，相当于dataSource回调
@@ -42,5 +43,20 @@ typedef void(^PowerfulBannerViewDidUpdateIndex)(PowerfulBannerView *banner, NSIn
 @property (nonatomic) BOOL infiniteLooping;
 // 开启/关闭自动循环滚动  注：autoLooping设为YES 会自动把 infiniteLooping 设为YES
 @property (nonatomic) BOOL autoLooping;
+
+@property (strong, nonatomic) id <PowerfulBannerPageControl> pageControl;
+
+- (void)reloadData;
+
+@end
+
+@protocol PowerfulBannerPageControl<NSObject>
+@required
+@property (nonatomic) NSInteger numberOfPages;
+@property (nonatomic) NSInteger currentPage;
+
+@optional
+@property (nonatomic, strong) UIImage *pageIndicatorImage;
+@property (nonatomic, strong) UIImage *currentPageIndicatorImage;
 
 @end
