@@ -118,7 +118,7 @@ static NSInteger const dequeueLevel = 4;
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
     
     if ([self.layer animationKeys].count > 0
-        || [self.dataSource viewCycleCount] == 0) {
+        || [self.dataSource viewCycleCount] <= 1) {
         return;
     }
 
@@ -192,6 +192,10 @@ static NSInteger const dequeueLevel = 4;
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    
+    if ([self.dataSource viewCycleCount] == 0) {
+        return;
+    }
  
     if (self.infiniteScrolling) {
         [self recenterIfNecessary];

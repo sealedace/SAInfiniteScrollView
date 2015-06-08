@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
 <InfiniteScrollViewDataSource, UIScrollViewDelegate>
 @property (strong, nonatomic) InfiniteScrollView *scrollView;
 @property (nonatomic) BannerTouchState touchState;
-
+@property (nonatomic) BOOL isActive;// 用于标记app active状态
 @property (strong, nonatomic) UIPanGestureRecognizer *panGesture;
 
 @end
@@ -57,6 +57,7 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
     return _panGesture;
 }
 
+#pragma mark - Setters
 - (void)setPageControl:(id)pageControl
 {
     if (![pageControl respondsToSelector:@selector(setNumberOfPages:)]
@@ -74,9 +75,10 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
     return _pageControl;
 }
 
-#pragma mark - Setters
 - (void)setItems:(NSArray *)items
 {
+    [self cancelSlide];
+    
     BOOL shouldReConfigure = (_items.count != items.count);
     
     _items = items;
@@ -148,10 +150,13 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
 {
     [self cancelSlide];
     _scrollView.delegate = nil;
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)setupViews
 {
+    _isActive = YES;
     _loopingInterval = 2;
     _infiniteLooping = NO;
     _autoLooping = NO;
@@ -159,6 +164,9 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
     self.backgroundColor = [UIColor whiteColor];
     
     [self addSubview:self.scrollView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive) name:UIApplicationWillResignActiveNotification object:nil];
 }
 
 - (void)layoutSubviews
@@ -206,7 +214,9 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
         && self.window
         && self.autoLooping
         && self.infiniteLooping
-        && BannerTouchState_Ended == self.touchState) {
+        && BannerTouchState_Ended == self.touchState
+        && self.isActive
+        && self.items.count > 1) {
         
         [self.scrollView performSelector:@selector(slideToNext) withObject:nil afterDelay:self.loopingInterval];
     }
@@ -230,6 +240,20 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
 - (void)restoreScrollViewGesture
 {
     [self removeGestureRecognizer:self.panGesture];
+}
+
+- (void)appDidBecomeActive
+{
+    // app 激活 恢复轮播
+    self.isActive = YES;
+    [self autoSlide];
+}
+
+- (void)appWillResignActive
+{
+    // app 未激活状态取消自动轮播
+    self.isActive = NO;
+    [self cancelSlide];
 }
 
 #pragma mark - InfiniteScrollViewDataSource
