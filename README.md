@@ -100,7 +100,7 @@ self.bannerView.autoLooping = NO;
 self.bannerView.infiniteLooping = NO;
 ```
 
-###License
+#License
 ```
 MIT
 ```
