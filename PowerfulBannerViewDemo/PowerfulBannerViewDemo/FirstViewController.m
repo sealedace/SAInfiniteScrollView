@@ -11,6 +11,7 @@
 
 @interface FirstViewController ()
 @property (weak, nonatomic) IBOutlet PowerfulBannerView *bannerView;
+@property (weak, nonatomic) IBOutlet UIPageControl *pc;
 
 @end
 
@@ -19,6 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    // 支持UIPageControl
+    self.bannerView.pageControl = self.pc;
     // 内容配置block
     self.bannerView.bannerItemConfigurationBlock = ^UIView *(PowerfulBannerView *banner, id item, UIView *reusableView) {
         

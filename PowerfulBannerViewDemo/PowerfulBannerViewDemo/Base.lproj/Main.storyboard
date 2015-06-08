@@ -24,10 +24,15 @@
                                     <constraint firstAttribute="height" constant="220" id="Zcg-uN-J2F"/>
                                 </constraints>
                             </view>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="njE-3a-vKk">
+                                <rect key="frame" x="281" y="327" width="39" height="37"/>
+                            </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="GIR-uP-MkR" firstAttribute="bottom" secondItem="njE-3a-vKk" secondAttribute="bottom" id="0Ne-EU-WPf"/>
                             <constraint firstAttribute="trailing" secondItem="GIR-uP-MkR" secondAttribute="trailing" id="Lfj-Yc-i4L"/>
+                            <constraint firstAttribute="centerX" secondItem="njE-3a-vKk" secondAttribute="centerX" constant="-0.5" id="VIz-oA-Rol"/>
                             <constraint firstAttribute="centerY" secondItem="GIR-uP-MkR" secondAttribute="centerY" constant="46.5" id="bCP-06-ZGu"/>
                             <constraint firstItem="GIR-uP-MkR" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="ogh-Qp-w3F"/>
                         </constraints>
@@ -35,6 +40,7 @@
                     <tabBarItem key="tabBarItem" title="Infinite" image="first" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="bannerView" destination="GIR-uP-MkR" id="WuB-uD-n8M"/>
+                        <outlet property="pc" destination="njE-3a-vKk" id="7m9-zq-Cs0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>

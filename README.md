@@ -59,6 +59,19 @@ self.bannerView.bannerDidSelectBlock = ^(PowerfulBannerView *banner, NSInteger i
     };
 ```
 
+####支持PageControl
+对于PageControl的支持，可以是UIPageControl或者其他自定义的。但是需要包含如下两个属性
+```objc
+@property (nonatomic) NSInteger numberOfPages;
+@property (nonatomic) NSInteger currentPage;
+```
+
+设置PageControl
+```objc
+self.bannerView.pageControl = pageControlInstance;
+```
+
+
 ####配置滚动方式（按需配置）
 
 * 开启循环滚动，并设置自动触发

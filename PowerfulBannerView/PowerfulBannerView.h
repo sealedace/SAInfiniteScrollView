@@ -3,7 +3,7 @@
 //
 //  Created by gaoqiang xu on 5/26/15.
 //  Copyright (c) 2015 SealedCompany. All rights reserved.
-//  Version 1.0
+//  Version 1.0.3
 
 #import <UIKit/UIKit.h>
 
@@ -19,13 +19,17 @@
  
  @return 内容页视图
  
- @since 1.0
+ @since 1.0.0
  */
 typedef UIView *(^PowerfulBannerViewItemConfigration)(PowerfulBannerView *banner, id item, UIView *reusableView);
 typedef void(^PowerfulBannerViewDidSelectAtIndex)(PowerfulBannerView *banner, NSInteger index);
 typedef void(^PowerfulBannerViewDidUpdateIndex)(PowerfulBannerView *banner, NSInteger fromIndex, NSInteger toIndex);
 
 @interface PowerfulBannerView : UIView
+{
+    __strong id <PowerfulBannerPageControl> _pageControl;
+}
+
 // banner内容的model数组
 @property (strong, nonatomic) NSArray *items;
 // banner当前展示的index
@@ -43,20 +47,26 @@ typedef void(^PowerfulBannerViewDidUpdateIndex)(PowerfulBannerView *banner, NSIn
 @property (nonatomic) BOOL infiniteLooping;
 // 开启/关闭自动循环滚动  注：autoLooping设为YES 会自动把 infiniteLooping 设为YES
 @property (nonatomic) BOOL autoLooping;
+// PageControl
+@property (strong, nonatomic) id pageControl;
 
-@property (strong, nonatomic) id <PowerfulBannerPageControl> pageControl;
-
+/**
+ @brief  重新加载视图数据
+ 
+ @since 1.0.2
+ */
 - (void)reloadData;
 
 @end
 
+/**
+ @brief  支持PageControl
+ 
+ @since 1.0.3
+ */
 @protocol PowerfulBannerPageControl<NSObject>
 @required
 @property (nonatomic) NSInteger numberOfPages;
 @property (nonatomic) NSInteger currentPage;
-
-@optional
-@property (nonatomic, strong) UIImage *pageIndicatorImage;
-@property (nonatomic, strong) UIImage *currentPageIndicatorImage;
 
 @end

@@ -57,6 +57,23 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
     return _panGesture;
 }
 
+- (void)setPageControl:(id)pageControl
+{
+    if (![pageControl respondsToSelector:@selector(setNumberOfPages:)]
+        || ![pageControl respondsToSelector:@selector(setCurrentPage:)]) {
+        
+        _pageControl = nil;
+    } else {
+        
+        _pageControl = pageControl;
+    }
+}
+
+- (id)pageControl
+{
+    return _pageControl;
+}
+
 #pragma mark - Setters
 - (void)setItems:(NSArray *)items
 {
@@ -75,6 +92,8 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
     } else {
         [self reloadData];
     }
+    
+    _pageControl.currentPage = self.currentIndex;
 }
 
 - (void)setInfiniteLooping:(BOOL)infiniteLooping
@@ -225,6 +244,8 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
     id item = self.items[index];
     view = self.bannerItemConfigurationBlock(self, item, view);
  
+    _pageControl.numberOfPages = self.items.count;
+    
     return view;
 }
 
@@ -235,6 +256,8 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
 
 - (void)scrollViewIndexChangedFromIndex:(NSInteger)fromIndex _:(NSInteger)toIndex
 {
+    _pageControl.currentPage = toIndex;
+    
     !self.bannerIndexChangeBlock ?: self.bannerIndexChangeBlock(self, fromIndex, toIndex);
     
     [self autoSlide];

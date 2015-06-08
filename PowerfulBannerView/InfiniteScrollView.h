@@ -17,7 +17,7 @@
  
  @return 内容视图
  
- @since 1.0
+ @since 1.0.0
  */
 - (UIView *)itemViewForIndex:(NSInteger)index reusableItemView:(UIView *)view;
 
@@ -26,28 +26,28 @@
  
  @return 数量
  
- @since 1.0
+ @since 1.0.0
  */
 - (NSInteger)viewCycleCount;
 
 /**
  @brief  触摸开始事件捕获
  
- @since 1.0
+ @since 1.0.0
  */
 - (void)touchesBegan;
 
 /**
  @brief  触摸事件结束
  
- @since 1.0
+ @since 1.0.0
  */
 - (void)touchesEnded;
 
 /**
  @brief  触摸取消事件
  
- @since 1.0
+ @since 1.0.0
  */
 - (void)touchesCancelled;
 
@@ -83,14 +83,14 @@ typedef void(^IndexChanged)(NSInteger newIndex, NSInteger oldIndex);
  
  @return 当前的索引
  
- @since 1.0
+ @since 1.0.0
  */
 - (NSInteger)currentIndex;
 
 /**
  @brief  滑动到下一页
  
- @since 1.0
+ @since 1.0.0
  */
 - (void)slideToNext;
 
