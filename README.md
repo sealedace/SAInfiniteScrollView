@@ -99,3 +99,8 @@ self.bannerView.autoLooping = NO;
 // 关闭循环滚动
 self.bannerView.infiniteLooping = NO;
 ```
+
+###License
+```
+MIT
+```
