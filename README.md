@@ -6,6 +6,10 @@ UIScrollView实现的支持循环滑动的bannerView
 
 ###安装
 * Cocoapods
+```
+pod 'SAInfiniteScrollView', '~> 1.0.3'
+```
+
 * 拷贝目录PowerfulBannerView，添加至工程即可
 
 ###如何使用
