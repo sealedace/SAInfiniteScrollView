@@ -262,7 +262,11 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
 {
     if (self.items.count == 0
         || !self.bannerItemConfigurationBlock) {
-        return [[UIView alloc] initWithFrame:CGRectZero];
+        return nil;
+    }
+    
+    if (index < 0 || index >= self.items.count) {
+        return nil;
     }
     
     id item = self.items[index];
