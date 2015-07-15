@@ -11,7 +11,6 @@
 
 @interface SecondViewController ()
 @property (strong, nonatomic) PowerfulBannerView *bannerView;
-
 @end
 
 @implementation SecondViewController
@@ -56,6 +55,16 @@
 - (void)bannerView:(PowerfulBannerView *)banner didScrollFrom:(NSInteger)index toIndex:(NSInteger)toIndex
 {
     printf("scrollview changed index from %zd to %zd\n", index, toIndex);
+}
+
+- (IBAction)previous
+{
+    [self.bannerView slideToPrevious];
+}
+
+- (IBAction)next:(id)sender
+{
+    [self.bannerView slideToNext];
 }
 
 

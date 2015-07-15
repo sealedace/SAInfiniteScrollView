@@ -3,7 +3,7 @@
 //
 //  Created by gaoqiang xu on 5/26/15.
 //  Copyright (c) 2015 SealedCompany. All rights reserved.
-//  Version 1.0.3
+//  Version 1.0.5
 
 #import <UIKit/UIKit.h>
 
@@ -56,6 +56,20 @@ typedef void(^PowerfulBannerViewDidUpdateIndex)(PowerfulBannerView *banner, NSIn
  @since 1.0.2
  */
 - (void)reloadData;
+
+/**
+ @brief  滑到下一页
+ 
+ @since 1.0.5
+ */
+- (void)slideToNext;
+
+/**
+ @brief  滑至上一页
+ 
+ @since 1.0.5
+ */
+- (void)slideToPrevious;
 
 @end
 

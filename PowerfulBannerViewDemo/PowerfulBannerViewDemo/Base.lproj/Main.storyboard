@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="15A216g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--Infinite-->
@@ -19,6 +19,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GIR-uP-MkR" customClass="PowerfulBannerView">
                                 <rect key="frame" x="0.0" y="144" width="600" height="220"/>
+                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="220" id="Zcg-uN-J2F"/>
@@ -26,8 +27,10 @@
                             </view>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="njE-3a-vKk">
                                 <rect key="frame" x="281" y="327" width="39" height="37"/>
+                                <animations/>
                             </pageControl>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="GIR-uP-MkR" firstAttribute="bottom" secondItem="njE-3a-vKk" secondAttribute="bottom" id="0Ne-EU-WPf"/>
@@ -58,7 +61,44 @@
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qgY-TE-6LH">
+                                <rect key="frame" x="69" y="466" width="59" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="59" id="6x3-Qg-k3l"/>
+                                    <constraint firstAttribute="height" constant="30" id="KBr-4m-Vhg"/>
+                                </constraints>
+                                <state key="normal" title="Previous">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="previous" destination="8rJ-Kc-sve" eventType="touchUpInside" id="9eQ-iT-exD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U53-2P-Inl">
+                                <rect key="frame" x="472" y="466" width="59" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="59" id="4om-59-zGU"/>
+                                    <constraint firstAttribute="height" constant="30" id="TNH-qi-JSk"/>
+                                </constraints>
+                                <state key="normal" title="Next">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="next:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="fpr-tH-e1a"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qgY-TE-6LH" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" constant="69" id="Ado-tW-YM1"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="qgY-TE-6LH" secondAttribute="bottom" constant="55" id="JC6-9h-c8b"/>
+                            <constraint firstAttribute="trailing" secondItem="U53-2P-Inl" secondAttribute="trailing" constant="69" id="q8q-zr-Hux"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="U53-2P-Inl" secondAttribute="bottom" constant="55" id="wtS-zl-yWM"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="UIscrollView" image="second" id="cPa-gy-q4n"/>
                 </viewController>
@@ -74,6 +114,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>

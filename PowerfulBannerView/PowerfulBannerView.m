@@ -337,4 +337,22 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
     [self.scrollView reloadViews];
 }
 
+- (void)slideToNext
+{
+    if (self.currentIndex == self.items.count-1) {
+        return;
+    }
+    
+    [self.scrollView slideToNext];
+}
+
+- (void)slideToPrevious
+{
+    if (self.currentIndex == 0) {
+        return;
+    }
+    
+    [self.scrollView slideToPrevious];
+}
+
 @end

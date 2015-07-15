@@ -95,6 +95,13 @@ typedef void(^IndexChanged)(NSInteger newIndex, NSInteger oldIndex);
 - (void)slideToNext;
 
 /**
+ @brief  滑动到上一页
+ 
+ @since 1.0.5
+ */
+- (void)slideToPrevious;
+
+/**
  @brief  重置视图
  
  @since 1.0.2

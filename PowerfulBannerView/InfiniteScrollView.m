@@ -113,6 +113,25 @@ static NSInteger const dequeueLevel = 4;
     return self;
 }
 
+- (void)slideToPrevious
+{
+    if ([self.layer animationKeys].count > 0
+        || [self.dataSource viewCycleCount] <= 1) {
+        return;
+    }
+    
+    CGPoint currentOffset = self.contentOffset;
+    CGFloat scale = currentOffset.x / CGRectGetWidth(self.bounds);
+    
+    if ((scale-(int)scale) > FLT_EPSILON) {
+        return;
+    }
+    
+    currentOffset.x -= CGRectGetWidth(self.bounds);
+    
+    [self setContentOffset:currentOffset animated:YES];
+}
+
 - (void)slideToNext
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:_cmd object:nil];
@@ -123,6 +142,12 @@ static NSInteger const dequeueLevel = 4;
     }
 
     CGPoint currentOffset = self.contentOffset;
+    CGFloat scale = currentOffset.x / CGRectGetWidth(self.bounds);
+    
+    if ((scale-(int)scale) > FLT_EPSILON) {
+        return;
+    }
+    
     currentOffset.x += CGRectGetWidth(self.bounds);
     
     [self setContentOffset:currentOffset animated:YES];
@@ -357,6 +382,7 @@ static inline NSInteger fixIndex(NSInteger index, NSInteger total)
             [self placeNewViewOnLeft:leftEdge reusableView:nil];
         }
         [self placeNewViewOnCenter:leftEdge];
+        
     }
     
     UIView *reusableView = nil;
@@ -382,7 +408,7 @@ static inline NSInteger fixIndex(NSInteger index, NSInteger total)
     CGFloat rightEdge = CGRectGetMaxX([lastView frame]);
     if (rightEdge < maximumVisibleX) {
         
-        if (!self.infiniteScrolling && maximumVisibleX >= self.contentSize.width) {
+        if (!self.infiniteScrolling && maximumVisibleX > self.contentSize.width) {
             
         } else {
             [self placeNewViewOnRight:rightEdge reusableView:reusableView];
