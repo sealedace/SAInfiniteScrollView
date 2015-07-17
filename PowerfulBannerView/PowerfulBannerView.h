@@ -3,7 +3,7 @@
 //
 //  Created by gaoqiang xu on 5/26/15.
 //  Copyright (c) 2015 SealedCompany. All rights reserved.
-//  Version 1.0.5
+//  Version 1.0.6
 
 #import <UIKit/UIKit.h>
 
@@ -24,6 +24,16 @@
 typedef UIView *(^PowerfulBannerViewItemConfigration)(PowerfulBannerView *banner, id item, UIView *reusableView);
 typedef void(^PowerfulBannerViewDidSelectAtIndex)(PowerfulBannerView *banner, NSInteger index);
 typedef void(^PowerfulBannerViewDidUpdateIndex)(PowerfulBannerView *banner, NSInteger fromIndex, NSInteger toIndex);
+/**
+ @brief  长按手势回调
+ 
+ @param banner PowerfulBannerView对象
+ @param index  长按所处的index
+ @param item   长按区域对应的数据
+ 
+ @since 1.0.6
+ */
+typedef void(^PowerfulBannerViewLongGestureHandler)(PowerfulBannerView *banner, NSInteger index, id item);
 
 @interface PowerfulBannerView : UIView
 {
@@ -42,11 +52,14 @@ typedef void(^PowerfulBannerViewDidUpdateIndex)(PowerfulBannerView *banner, NSIn
 @property (copy, nonatomic) PowerfulBannerViewDidSelectAtIndex bannerDidSelectBlock;
 // banner滑动index变动的回调
 @property (copy, nonatomic) PowerfulBannerViewDidUpdateIndex bannerIndexChangeBlock;
-
 // 开启/关闭循环模式 注：infiniteLooping设为NO 会自动把 autoLooping 设为NO
 @property (nonatomic) BOOL infiniteLooping;
 // 开启/关闭自动循环滚动  注：autoLooping设为YES 会自动把 infiniteLooping 设为YES
 @property (nonatomic) BOOL autoLooping;
+// 长按手势的时常设置  默认1s
+@property (nonatomic) CFTimeInterval longTapTriggerTime;
+// 长按手势回调
+@property (copy, nonatomic) PowerfulBannerViewLongGestureHandler longTagGestureHandler;
 // PageControl
 @property (strong, nonatomic) id pageControl;
 

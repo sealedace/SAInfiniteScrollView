@@ -243,6 +243,15 @@ static NSInteger const dequeueLevel = 4;
     }
 }
 
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesMoved:touches withEvent:event];
+    
+    if (self.dataSource && [self.dataSource respondsToSelector:@selector(touchesMoved)]) {
+        [self.dataSource touchesMoved];
+    }
+}
+
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesEnded:touches withEvent:event];

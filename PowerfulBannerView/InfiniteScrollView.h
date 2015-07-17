@@ -45,6 +45,13 @@
 - (void)touchesEnded;
 
 /**
+ @brief  触摸事件移动
+ 
+ @since 1.0.6
+ */
+- (void)touchesMoved;
+
+/**
  @brief  触摸取消事件
  
  @since 1.0.0

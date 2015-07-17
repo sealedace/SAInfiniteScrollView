@@ -36,6 +36,7 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
         _scrollView.pagingEnabled = YES;
         _scrollView.showsVerticalScrollIndicator = NO;
         _scrollView.showsHorizontalScrollIndicator = NO;
+        _scrollView.scrollsToTop = NO;
         _scrollView.indexChangeBlock = ^(NSInteger newIndex, NSInteger oldIndex) {
             [weakSelf scrollViewIndexChangedFromIndex:oldIndex _:newIndex];
         };
@@ -156,6 +157,7 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
 
 - (void)setupViews
 {
+    _longTapTriggerTime = 1.f;// default is 1s
     _isActive = YES;
     _loopingInterval = 2;
     _infiniteLooping = NO;
@@ -297,30 +299,56 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
     [self cancelSlide];
     
     self.touchState = BannerTouchState_Began;
+    
+    if (self.longTagGestureHandler && self.longTapTriggerTime > 0) {
+        [self performSelector:@selector(longGestureTriggered) withObject:nil afterDelay:self.longTapTriggerTime];
+    }
 }
 
 - (void)touchesEnded
 {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(longGestureTriggered) object:nil];
+    
     self.touchState = BannerTouchState_Ended;
     
     // 尝试恢复自动滑动
     [self autoSlide];
-    
+  
     !self.bannerDidSelectBlock ?: self.bannerDidSelectBlock(self, self.currentIndex);
+}
+
+- (void)touchesMoved
+{
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(longGestureTriggered) object:nil];
 }
 
 - (void)touchesCancelled
 {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(longGestureTriggered) object:nil];
+    
     self.touchState = BannerTouchState_Ended;
     
     // 尝试恢复自动滑动
     [self autoSlide];
+    
+    if ([[UIApplication sharedApplication] isIgnoringInteractionEvents]) {
+        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+    }
+}
+
+- (void)longGestureTriggered
+{
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+    self.longTagGestureHandler(self, self.currentIndex, self.items[self.currentIndex]);
+    
 }
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     [self touchesBegan];
+    
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(longGestureTriggered) object:nil];
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate

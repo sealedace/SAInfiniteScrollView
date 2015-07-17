@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "SAInfiniteScrollView"
-  s.version          = "1.0.5"
+  s.version          = "1.0.6"
   s.summary          = "an UIScrollView  that scrolls forever"
   s.description      = <<-DESC
                        A customized UIScrollView which supports infinite scrolling feature.
