@@ -319,7 +319,7 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
 
 - (void)touchesMoved
 {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(longGestureTriggered) object:nil];
+
 }
 
 - (void)touchesCancelled
@@ -339,7 +339,7 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
 - (void)longGestureTriggered
 {
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-    self.longTagGestureHandler(self, self.currentIndex, self.items[self.currentIndex]);
+    self.longTagGestureHandler(self, self.currentIndex, self.items[self.currentIndex], self.currentContentView);
     
 }
 
@@ -381,6 +381,11 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
     }
     
     [self.scrollView slideToPrevious];
+}
+
+- (UIView *)currentContentView
+{
+    return self.scrollView.currentContentView;
 }
 
 @end

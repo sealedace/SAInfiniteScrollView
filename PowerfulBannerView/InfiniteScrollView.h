@@ -84,6 +84,7 @@ typedef void(^IndexChanged)(NSInteger newIndex, NSInteger oldIndex);
 @property (weak, nonatomic) id<InfiniteScrollViewDataSource> dataSource;
 @property (nonatomic) BOOL infiniteScrolling;
 @property (copy, nonatomic) IndexChanged indexChangeBlock;
+@property (readonly, weak, nonatomic) UIView *currentContentView;
 
 /**
  @brief  获取当前的索引

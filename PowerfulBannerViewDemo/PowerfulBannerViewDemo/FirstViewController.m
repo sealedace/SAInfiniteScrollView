@@ -48,6 +48,10 @@
         printf("banner changed index from %zd to %zd\n", fromIndex, toIndex);
     };
     
+    self.bannerView.longTagGestureHandler = ^(PowerfulBannerView *banner, NSInteger index, id item, UIView *view) {
+        printf("banner long gesture recognized on index: %zd !\n", index);
+    };
+    
     self.bannerView.items = @[ @"1.jpg", @"2.jpg", @"ss-detail1.jpg", @"4.png", @"5.jpg", @"6.jpg" ];
     self.bannerView.loopingInterval = 2.f;
     self.bannerView.autoLooping = YES;

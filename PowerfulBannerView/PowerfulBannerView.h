@@ -33,7 +33,7 @@ typedef void(^PowerfulBannerViewDidUpdateIndex)(PowerfulBannerView *banner, NSIn
  
  @since 1.0.6
  */
-typedef void(^PowerfulBannerViewLongGestureHandler)(PowerfulBannerView *banner, NSInteger index, id item);
+typedef void(^PowerfulBannerViewLongGestureHandler)(PowerfulBannerView *banner, NSInteger index, id item, UIView *view);
 
 @interface PowerfulBannerView : UIView
 {
@@ -62,6 +62,8 @@ typedef void(^PowerfulBannerViewLongGestureHandler)(PowerfulBannerView *banner, 
 @property (copy, nonatomic) PowerfulBannerViewLongGestureHandler longTagGestureHandler;
 // PageControl
 @property (strong, nonatomic) id pageControl;
+// 当前展示的视图
+@property (readonly, weak, nonatomic) UIView *currentContentView;
 
 /**
  @brief  重新加载视图数据

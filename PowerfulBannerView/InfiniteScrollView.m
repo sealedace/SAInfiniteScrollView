@@ -172,6 +172,29 @@ static NSInteger const dequeueLevel = 4;
     }
 }
 
+- (UIView *)currentContentView
+{
+    if (self.visibleViews.count == 0) {
+        return nil;
+    }
+    
+    __block UIView *content = nil;
+    
+    [self.visibleViews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        UIView *view = obj;
+        CGRect rect = [self convertRect:view.frame toView:self.superview];
+        if (CGRectContainsRect(self.superview.bounds, rect) ) {
+            NSArray *sub = view.subviews;
+            if (sub.count > 0) {
+                content = sub[0];
+            }
+            *stop = YES;
+        }
+    }];
+    
+    return content;
+}
+
 #pragma mark - Layout
 
 // recenter content periodically to achieve impression of infinite scrolling
