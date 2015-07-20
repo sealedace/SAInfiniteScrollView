@@ -59,7 +59,7 @@ typedef void(^PowerfulBannerViewLongGestureHandler)(PowerfulBannerView *banner, 
 // 长按手势的时常设置  默认1s
 @property (nonatomic) CFTimeInterval longTapTriggerTime;
 // 长按手势回调
-@property (copy, nonatomic) PowerfulBannerViewLongGestureHandler longTagGestureHandler;
+@property (copy, nonatomic) PowerfulBannerViewLongGestureHandler longTapGestureHandler;
 // PageControl
 @property (strong, nonatomic) id pageControl;
 // 当前展示的视图

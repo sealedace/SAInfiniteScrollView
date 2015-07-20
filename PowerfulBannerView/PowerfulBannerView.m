@@ -300,7 +300,7 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
     
     self.touchState = BannerTouchState_Began;
     
-    if (self.longTagGestureHandler && self.longTapTriggerTime > 0) {
+    if (self.longTapGestureHandler && self.longTapTriggerTime > 0) {
         [self performSelector:@selector(longGestureTriggered) withObject:nil afterDelay:self.longTapTriggerTime];
     }
 }
@@ -339,7 +339,7 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
 - (void)longGestureTriggered
 {
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-    self.longTagGestureHandler(self, self.currentIndex, self.items[self.currentIndex], self.currentContentView);
+    self.longTapGestureHandler(self, self.currentIndex, self.items[self.currentIndex], self.currentContentView);
     
 }
 

@@ -49,7 +49,7 @@
         printf("banner changed index from %zd to %zd\n", fromIndex, toIndex);
     };
     
-    self.bannerView.longTagGestureHandler = ^(PowerfulBannerView *banner, NSInteger index, id item, UIView *view) {
+    self.bannerView.longTapGestureHandler = ^(PowerfulBannerView *banner, NSInteger index, id item, UIView *view) {
         printf("banner long gesture recognized on index: %zd !\n", index);
     };
     
