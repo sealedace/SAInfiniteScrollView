@@ -96,6 +96,7 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
         [self reloadData];
     }
     
+    _pageControl.numberOfPages = items.count;
     _pageControl.currentPage = self.currentIndex;
 }
 
@@ -275,6 +276,7 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
     view = self.bannerItemConfigurationBlock(self, item, view);
  
     _pageControl.numberOfPages = self.items.count;
+    _pageControl.currentPage = self.currentIndex;
     
     return view;
 }
@@ -295,12 +297,13 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
 
 - (void)touchesBegan
 {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(longGestureTriggered) object:nil];
     // 取消自动滑动
     [self cancelSlide];
     
     self.touchState = BannerTouchState_Began;
     
-    if (self.longTapGestureHandler && self.longTapTriggerTime > 0) {
+    if (!self.scrollView.isDragging && self.longTapGestureHandler && self.longTapTriggerTime > 0) {
         [self performSelector:@selector(longGestureTriggered) withObject:nil afterDelay:self.longTapTriggerTime];
     }
 }
@@ -319,7 +322,7 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
 
 - (void)touchesMoved
 {
-
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(longGestureTriggered) object:nil];
 }
 
 - (void)touchesCancelled
@@ -347,7 +350,6 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     [self touchesBegan];
-    
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(longGestureTriggered) object:nil];
 }
 
