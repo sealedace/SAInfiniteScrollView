@@ -7,7 +7,7 @@ UIScrollView实现的支持循环滑动的bannerView
 #安装
 * Cocoapods
 ```
-pod 'SAInfiniteScrollView', '~> 1.0.6'
+pod 'SAInfiniteScrollView', '~> 1.0.7'
 ```
 
 * 拷贝目录PowerfulBannerView，添加至工程即可
@@ -60,6 +60,14 @@ self.bannerView.items = @[ @"1.jpg", @"2.jpg", @"ss-detail1.jpg", @"4.png", @"5.
 ```objc
 self.bannerView.bannerDidSelectBlock = ^(PowerfulBannerView *banner, NSInteger index) {
         printf("banner did select index at: %zd \n", index);
+    };
+```
+
+####长按点击事件处理
+配置block回调来处理长按事件
+```objc
+self.bannerView.longTapGestureHandler = ^(PowerfulBannerView *banner, NSInteger index, id item, UIView *view) {
+        printf("banner long gesture recognized on index: %zd !\n", index);
     };
 ```
 
