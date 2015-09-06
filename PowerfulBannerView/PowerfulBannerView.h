@@ -55,13 +55,13 @@ typedef void(^PowerfulBannerViewLongGestureHandler)(PowerfulBannerView *banner, 
 // 开启/关闭循环模式 注：infiniteLooping设为NO 会自动把 autoLooping 设为NO
 @property (nonatomic) BOOL infiniteLooping;
 // 开启/关闭自动循环滚动  注：autoLooping设为YES 会自动把 infiniteLooping 设为YES
-@property (nonatomic) BOOL autoLooping;
+@property (nonatomic) IBInspectable BOOL autoLooping;
 // 长按手势的时常设置  默认1s
 @property (nonatomic) CFTimeInterval longTapTriggerTime;
 // 长按手势回调
 @property (copy, nonatomic) PowerfulBannerViewLongGestureHandler longTapGestureHandler;
 // PageControl
-@property (strong, nonatomic) id pageControl;
+@property (strong, nonatomic) IBOutlet id pageControl;
 // 当前展示的视图
 @property (readonly, weak, nonatomic) UIView *currentContentView;
 

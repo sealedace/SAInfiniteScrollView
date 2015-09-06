@@ -98,6 +98,8 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
     
     _pageControl.numberOfPages = items.count;
     _pageControl.currentPage = self.currentIndex;
+    
+    self.autoLooping = self.autoLooping;
 }
 
 - (void)setInfiniteLooping:(BOOL)infiniteLooping
@@ -116,17 +118,12 @@ typedef NS_ENUM(NSInteger, BannerTouchState) {
 
 - (void)setAutoLooping:(BOOL)autoLooping
 {
-    if (_autoLooping == autoLooping) {
-        return;
-    }
-    
+    [self cancelSlide];
     _autoLooping = autoLooping;
     
     if (autoLooping) {
         self.infiniteLooping = YES;
         [self autoSlide];
-    } else {
-        [self cancelSlide];
     }
 }
 
