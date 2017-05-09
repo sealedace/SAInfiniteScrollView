@@ -1,10 +1,12 @@
 
-#PowerfulBannerView
+# PowerfulBannerView
+
 UIScrollView实现的支持循环滑动的bannerView
 
 ![0](1.gif)
 
-#安装
+# 安装
+
 * Cocoapods
 ```
 pod 'SAInfiniteScrollView', '~> 1.0.7'
@@ -12,8 +14,10 @@ pod 'SAInfiniteScrollView', '~> 1.0.7'
 
 * 拷贝目录PowerfulBannerView，添加至工程即可
 
-#如何使用
-####创建对象
+# 如何使用
+
+#### 创建对象
+
 * nib加载
 
 ![1](1.png)
@@ -25,7 +29,8 @@ self.bannerView = [[PowerfulBannerView alloc] initWithFrame:CGRectMake(0, 200.f,
 ```
 
 
-####填充数据
+#### 填充数据
+
 1. 先配置一个block来创建内容，相当于UITableView的DataSource中得`cellForRowAtIndexPath:`
 2. 塞入数据模型
 
@@ -55,7 +60,8 @@ self.bannerView.items = @[ @"1.jpg", @"2.jpg", @"ss-detail1.jpg", @"4.png", @"5.
 
 ```
 
-####点击事件处理
+#### 点击事件处理
+
 配置block回调来处理点击事件
 ```objc
 self.bannerView.bannerDidSelectBlock = ^(PowerfulBannerView *banner, NSInteger index) {
@@ -84,7 +90,7 @@ self.bannerView.pageControl = pageControlInstance;
 ```
 
 
-####配置滚动方式（按需配置）
+#### 配置滚动方式（按需配置）
 
 * 开启循环滚动，并设置自动触发
 ```objc
@@ -108,6 +114,6 @@ self.bannerView.autoLooping = NO;
 self.bannerView.infiniteLooping = NO;
 ```
 
-#License
+# License
 
 MIT
