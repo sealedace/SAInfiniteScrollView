@@ -69,22 +69,27 @@ self.bannerView.bannerDidSelectBlock = ^(PowerfulBannerView *banner, NSInteger i
     };
 ```
 
-####长按点击事件处理
+#### 长按点击事件处理
+
 配置block回调来处理长按事件
+
 ```objc
 self.bannerView.longTapGestureHandler = ^(PowerfulBannerView *banner, NSInteger index, id item, UIView *view) {
         printf("banner long gesture recognized on index: %zd !\n", index);
     };
 ```
 
-####支持PageControl
+#### 支持PageControl
+
 对于PageControl的支持，可以是UIPageControl或者其他自定义的。但是需要包含如下两个属性
+
 ```objc
 @property (nonatomic) NSInteger numberOfPages;
 @property (nonatomic) NSInteger currentPage;
 ```
 
 设置PageControl
+
 ```objc
 self.bannerView.pageControl = pageControlInstance;
 ```
@@ -93,6 +98,7 @@ self.bannerView.pageControl = pageControlInstance;
 #### 配置滚动方式（按需配置）
 
 * 开启循环滚动，并设置自动触发
+
 ```objc
 // 配置循环滚动的时间间隔
 self.bannerView.loopingInterval = 2.f;
@@ -101,6 +107,7 @@ self.bannerView.autoLooping = YES;
 ```
 
 * 开启循环滚动，手动触发
+
 ```objc
 // 配置循环滚动的时间间隔
 self.bannerView.loopingInterval = 2.f;
@@ -109,6 +116,7 @@ self.bannerView.autoLooping = NO;
 ```
 
 * 关闭循环滚动（UIScrollView的style）
+
 ```objc
 // 关闭循环滚动
 self.bannerView.infiniteLooping = NO;
